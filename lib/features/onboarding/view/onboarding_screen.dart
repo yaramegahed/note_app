@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:note_app/features/home/view/home_screen.dart';
+import 'package:note_app/features/onboarding/widget/custom_elevated_button.dart';
+import 'package:note_app/features/onboarding/widget/custom_stack.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -12,26 +12,8 @@ class OnboardingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Stack(
-              children: [
-                Image.asset(
-                  "assets/images/Wall Polygon.png",
-                  fit: BoxFit.fill,
-                ),
-                Positioned(
-                  left: 110,
-                  top: 190,
-                  child: Image.asset(
-                    "assets/images/Illustration.png",
-                    fit: BoxFit.fill,
-                    height: 300,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 25,
-            ),
+            CustomStack(),
+            SizedBox(height: 25,),
             SizedBox(
               child: Text(
                 textAlign: TextAlign.center,
@@ -42,9 +24,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10,),
             SizedBox(
               child: Text(
                 textAlign: TextAlign.center,
@@ -57,23 +37,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(context,
-                    CupertinoPageRoute(builder: (context) => HomeScreen(),));
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFF8383),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5))),
-              child: Text(
-                "Get Started",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-            )
+            CustomElevatedButton()
           ],
         ),
       ),
