@@ -30,6 +30,12 @@ class CustomListTile extends StatelessWidget {
           onPressed: () {
             note.delete();
             BlocProvider.of<NotesCubit>(context).fetchNotes();
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(
+              content: Text("Note deleted"),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+            ));
           },
           icon: Icon(
             Icons.delete,

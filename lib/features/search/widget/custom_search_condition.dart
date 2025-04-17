@@ -20,7 +20,7 @@ class SearchConditions extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            "Try typing to search",
+            conditionText,
             style: TextStyle(fontSize: 16,color: Color(0xFFFF8383)),
           ),
         ],

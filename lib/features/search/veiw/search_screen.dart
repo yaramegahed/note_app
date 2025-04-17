@@ -45,7 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           BlocBuilder<NotesCubit, NotesState>(
             builder: (context, state) {
-              List<HomeModel> notes =
+              List<HomeModel>? notes =
                   BlocProvider.of<NotesCubit>(context).notes ?? [];
               return searchController.text.isEmpty
                   ? SearchConditions(
