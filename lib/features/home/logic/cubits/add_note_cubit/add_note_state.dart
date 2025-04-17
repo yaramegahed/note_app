@@ -1,12 +1,12 @@
 
-abstract class HomeState {}
+abstract class AddNoteState {}
 
-class HomeInitial extends HomeState {}
-class HomeSuccessState extends HomeState {}
-class HomeLoadingState extends HomeState {}
-class HomeFailureState extends HomeState {
+class AddNoteInitial extends AddNoteState {}
+class AddNoteSuccessState extends AddNoteState {}
+class AddNoteLoadingState extends AddNoteState {}
+class AddNoteFailureState extends AddNoteState {
   final String errorMassage;
 
-  HomeFailureState(this.errorMassage);
+  AddNoteFailureState(this.errorMassage);
 
 }

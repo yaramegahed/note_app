@@ -8,12 +8,13 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomStack(),
-            SizedBox(height: 25,),
+            SizedBox(height: 35,),
             SizedBox(
               child: Text(
                 textAlign: TextAlign.center,
@@ -24,11 +25,11 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 15,),
             SizedBox(
               child: Text(
                 textAlign: TextAlign.center,
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean est elit, lobortis a mattis vel, aliquet ut ligula.",
+                "Organize your thoughts, capture your ideas, and turn everyday moments into lasting notes.",
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 17,
@@ -36,7 +37,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
+            SizedBox(height: 20,),
             CustomElevatedButton()
           ],
         ),

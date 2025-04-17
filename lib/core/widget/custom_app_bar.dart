@@ -7,13 +7,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.icon,
     this.arrowIcon,
     this.onPressed,
-    this.showBackButton = true,
+    this.showBackButton = true, this.buttonOnPressed,
   });
 
   final String title;
   final IconData icon;
   final IconData? arrowIcon;
   final void Function()? onPressed;
+  final void Function()? buttonOnPressed;
   final bool showBackButton;
 
   @override
@@ -35,7 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               borderRadius: BorderRadius.circular(15),
               color: Color(0xFFFF8383)),
           child: IconButton(
-            onPressed: () {},
+            onPressed: buttonOnPressed,
             icon: Icon(
               icon,
               color: Colors.white,
