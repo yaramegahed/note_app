@@ -19,14 +19,11 @@ class CustomListTile extends StatelessWidget {
         note.title,
         style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,letterSpacing: 1),
       ),
-      subtitle: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        child: Text(
-          note.subTitle,
-          style: TextStyle(
-            letterSpacing: 1.5,
-            fontSize: 22,
-          ),
+      subtitle: Text(
+        note.subTitle,
+        style: TextStyle(
+          letterSpacing: 1.5,
+          fontSize: 20,
         ),
       ),
       trailing: IconButton(

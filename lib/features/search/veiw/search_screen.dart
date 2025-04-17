@@ -5,6 +5,7 @@ import 'package:note_app/features/home/widget/custom_home_container.dart';
 
 import '../../home/logic/cubits/notes_cubit/notes_cubit.dart';
 import '../../home/logic/model/home_model.dart';
+import '../widget/custom_search_condition.dart';
 import '../widget/custom_search_screen.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -47,35 +48,22 @@ class _SearchScreenState extends State<SearchScreen> {
               List<HomeModel> notes =
                   BlocProvider.of<NotesCubit>(context).notes ?? [];
               return searchController.text.isEmpty
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Notes",
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          ),
-                          Spacer(),
-                          Text(
-                            "Try typing to search",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
+                  ? SearchConditions(
+                      conditionText: 'Try typing to search',
                     )
-                  : Expanded(
-                      child: ListView.builder(
-                        itemCount: notes.length,
-                        itemBuilder: (context, index) {
-                          return CustomHomeContainer(
-                            note: notes[index],
-                            index: index + 11,
-                          );
-                        },
-                      ),
-                    );
+                  : notes.isNotEmpty
+                      ? Expanded(
+                          child: ListView.builder(
+                            itemCount: notes.length,
+                            itemBuilder: (context, index) {
+                              return CustomHomeContainer(
+                                note: notes[index],
+                                index: index + 11,
+                              );
+                            },
+                          ),
+                        )
+                      : SearchConditions(conditionText: "None found");
             },
           ),
         ],
@@ -83,3 +71,5 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+
+

@@ -4,12 +4,12 @@ import 'package:note_app/features/home/logic/model/home_model.dart';
 
 import 'custom_list_tile.dart';
 
-
 class CustomHomeContainer extends StatelessWidget {
   final HomeModel note;
   final int index;
 
-  const CustomHomeContainer({super.key, required this.note, required this.index});
+  const CustomHomeContainer(
+      {super.key, required this.note, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,9 @@ class CustomHomeContainer extends StatelessWidget {
         Navigator.push(
             context,
             CupertinoPageRoute(
-              builder: (context) => EditNoteScreen(note: note,),
+              builder: (context) => EditNoteScreen(
+                note: note,
+              ),
             ));
       },
       child: Container(
@@ -50,7 +52,8 @@ class CustomHomeContainer extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 16),
                     child: Text(
                       note.date,
-                      style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -60,4 +63,3 @@ class CustomHomeContainer extends StatelessWidget {
     );
   }
 }
-

@@ -28,39 +28,56 @@ class _HomeScreenState extends State<HomeScreen> {
         title: 'Notes',
         icon: Icons.search,
         buttonOnPressed: () {
-          Navigator.push(context, CupertinoPageRoute(
-              builder: (BuildContext context) => SearchScreen()));
+          Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (BuildContext context) => SearchScreen()));
         },
         showBackButton: false,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BlocBuilder<NotesCubit, NotesState>(
             builder: (context, state) {
               var box = Hive.box<HomeModel>(kNotesBox);
               var keys = box.keys.toList();
               List<HomeModel> notes =
-                  BlocProvider
-                      .of<NotesCubit>(context)
-                      .notes ?? [];
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: notes.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Dismissible(
-                        key: Key(keys[index].toString()),
-                        onDismissed: (_) {
-                          box.delete(keys[index]);
-                          BlocProvider.of<NotesCubit>(context).fetchNotes();
+                  BlocProvider.of<NotesCubit>(context).notes ?? [];
+              return notes.isEmpty
+                  ? Center(
+                      child: Text(
+                    "Try adding some Notes",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color(0xFFFF8383)),
+                  ))
+                  : Expanded(
+                      child: ListView.builder(
+                        itemCount: notes.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Dismissible(
+                              key: Key(keys[index].toString()),
+                              onDismissed: (_) {
+                                box.delete(keys[index]);
+                                BlocProvider.of<NotesCubit>(context)
+                                    .fetchNotes();
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text("Note deleted"),
+                                  backgroundColor: Colors.green,
+                                  behavior: SnackBarBehavior.floating,
+                                ));
+                              },
+                              direction: DismissDirection.endToStart,
+                              child: CustomHomeContainer(
+                                note: notes[index],
+                                index: (index + 11),
+                              ));
                         },
-                        direction: DismissDirection.endToStart,
-                        child: CustomHomeContainer(
-                          note: notes[index],
-                          index: (index + 11),
-                        ));
-                  },
-                ),
-              );
+                      ),
+                    );
             },
           )
         ],
@@ -68,4 +85,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
